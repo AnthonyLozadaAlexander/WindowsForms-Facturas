@@ -178,7 +178,7 @@ namespace FacturasProjects.Facturas
                     }
                     else
                     {
-                        return codigoBuscar; // Retorna el c�digo v�lido
+                        return codigoBuscar; // Retorna el c�digo valido
                     }
                 }
 
@@ -227,9 +227,6 @@ namespace FacturasProjects.Facturas
                 MessageBox.Show("Producto no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-
-
 
         }
 
@@ -295,6 +292,12 @@ namespace FacturasProjects.Facturas
             nombreProductoList[index] = txtNomProducto.Text;
             precioUList[index] = precioU;
             cantidadList[index] = cantidad;
+
+            double subtotal = precioUList[index] * cantidadList[index];
+            double iva = subtotal * 0.10;
+            double total = subtotal + iva;
+
+            tabla.Rows[index].Cells["Total"].Value = total;
 
         }
     }
