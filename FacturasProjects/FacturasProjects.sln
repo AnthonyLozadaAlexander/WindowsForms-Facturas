@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36401.2
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturaJugueteria", "Facturas\FacturaJugueteria.csproj", "{6AE6B21B-FBA9-4DA1-A307-1D55FFE21240}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturaSistemaDePedidos", "FacturaSistemaDePedidos\FacturaSistemaDePedidos.csproj", "{715D9574-CDEC-4F47-BB90-277AFF6F8A82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6AE6B21B-FBA9-4DA1-A307-1D55FFE21240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AE6B21B-FBA9-4DA1-A307-1D55FFE21240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AE6B21B-FBA9-4DA1-A307-1D55FFE21240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AE6B21B-FBA9-4DA1-A307-1D55FFE21240}.Release|Any CPU.Build.0 = Release|Any CPU
+		{715D9574-CDEC-4F47-BB90-277AFF6F8A82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{715D9574-CDEC-4F47-BB90-277AFF6F8A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{715D9574-CDEC-4F47-BB90-277AFF6F8A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{715D9574-CDEC-4F47-BB90-277AFF6F8A82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {794611E3-1AA3-46FB-BD32-1DAA2960602C}
+	EndGlobalSection
+EndGlobal
