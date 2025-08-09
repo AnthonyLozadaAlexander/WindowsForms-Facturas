@@ -287,6 +287,7 @@ namespace FacturasProjects.Facturas
                 }
             }
 
+            // Actualizar los datos en las listas
             codigoList[index] = nuevoCodigo;
             nombreList[index] = txtNombre.Text;
             apellidoList[index] = txtApellido.Text;
