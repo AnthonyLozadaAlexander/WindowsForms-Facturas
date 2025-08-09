@@ -297,6 +297,13 @@ namespace FacturasProjects.Facturas
             double iva = subtotal * 0.10;
             double total = subtotal + iva;
 
+            tabla.Rows[index].Cells["Nombre"].Value = nombreList[index];
+            tabla.Rows[index].Cells["Apellido"].Value = apellidoList[index];
+            tabla.Rows[index].Cells["Telefono"].Value = telefonoList[index];
+            tabla.Rows[index].Cells["Codigo"].Value = codigoList[index];
+            tabla.Rows[index].Cells["Nombre Producto"].Value = nombreProductoList[index];
+            tabla.Rows[index].Cells["Precio Unitario"].Value = precioUList[index];
+            tabla.Rows[index].Cells["Cantidad"].Value = cantidadList[index];
             tabla.Rows[index].Cells["Total"].Value = total;
 
         }
