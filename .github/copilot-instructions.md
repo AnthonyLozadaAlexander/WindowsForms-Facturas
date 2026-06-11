@@ -1,32 +1,32 @@
-# GitHub Copilot Instructions for Commits
+# Instrucciones de GitHub Copilot para Commits
 
-When generating commit messages, please follow the [Conventional Commits](https://www.conventionalcommits.org/) specification.
+Al generar mensajes de commit, por favor sigue la especificación de [Conventional Commits](https://www.conventionalcommits.org/).
 
-## Format
+## Formato
 ```
-<type>[optional scope]: <description>
+<tipo>[ámbito opcional]: <descripción>
 
-[optional body]
+[cuerpo opcional]
 
-[optional footer(s)]
+[nota(s) al pie opcional(es)]
 ```
 
-## Types
-* **feat**: A new feature
-* **fix**: A bug fix
-* **docs**: Documentation only changes
-* **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
-* **refactor**: A code change that neither fixes a bug nor adds a feature
-* **perf**: A code change that improves performance
-* **test**: Adding missing tests or correcting existing tests
-* **build**: Changes that affect the build system or external dependencies
-* **ci**: Changes to our CI configuration files and scripts
-* **chore**: Other changes that don't modify src or test files
-* **revert**: Reverts a previous commit
+## Tipos
+* **feat**: Una nueva característica
+* **fix**: Una corrección de un error
+* **docs**: Cambios únicamente en la documentación
+* **style**: Cambios que no afectan el significado del código (espacios en blanco, formato, punto y coma faltante, etc.)
+* **refactor**: Un cambio en el código que no corrige un error ni añade una característica
+* **perf**: Un cambio en el código que mejora el rendimiento
+* **test**: Añadir pruebas faltantes o corregir pruebas existentes
+* **build**: Cambios que afectan el sistema de compilación o dependencias externas
+* **ci**: Cambios en nuestros archivos y scripts de configuración de CI
+* **chore**: Otros cambios que no modifican los archivos fuente ni los de pruebas
+* **revert**: Revierte un commit anterior
 
-## Rules
-1. The description should be written in imperative mood ("add", not "added" or "adds").
-2. No capitalization of the first letter in the description.
-3. No dot (.) at the end of the description.
-4. Keep the first line under 72 characters.
-5. If there is a body, it should be separated from the description by a blank line and provide more details about the changes.
+## Reglas
+1. La descripción debe estar escrita en modo imperativo ("añadir", no "añadido" ni "añade").
+2. No se debe capitalizar (poner en mayúscula) la primera letra de la descripción.
+3. No debe haber un punto (.) al final de la descripción.
+4. Mantén la primera línea por debajo de los 72 caracteres.
+5. Si hay un cuerpo, este debe estar separado de la descripción por una línea en blanco y proporcionar más detalles sobre los cambios.
