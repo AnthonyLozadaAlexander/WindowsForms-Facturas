@@ -100,15 +100,12 @@
             }
             else
             {
-                if (!mesaList.Contains(mesa))
-                {
-                    mesaList.Add(mesa);
-                }
-                else
+                if (mesaList.Contains(mesa))
                 {
                     MessageBox.Show("Error: La Mesa Ya Se Encuentra Registrada ", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                
             }
 
             if (verificarSoloLetras(txtCliente.Text))
