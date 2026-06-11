@@ -7,6 +7,7 @@ namespace FacturasProjects.Facturas
     {
         private List<string> nombreList = new List<string>();
         private List<string> apellidoList = new List<string>();
+        private List<string> cedulaList = new List<string>();
         private List<int> telefonoList = new List<int>();
         private List<int> codigoList = new List<int>();
         private List<string> nombreProductoList = new List<string>();
@@ -30,25 +31,27 @@ namespace FacturasProjects.Facturas
                string.IsNullOrWhiteSpace(txtCodigo.Text) ||
                string.IsNullOrWhiteSpace(txtNomProducto.Text) ||
                string.IsNullOrWhiteSpace(txtPrecioU.Text) ||
-               string.IsNullOrWhiteSpace(txtCantJ.Text))
+               string.IsNullOrWhiteSpace(txtCantJ.Text) || 
+               string.IsNullOrWhiteSpace(txtCedula.Text))
             {
                 MessageBox.Show("Por favor, complete todos los campos.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!int.TryParse(txtCantJ.Text, out int cantidad)) { MessageBox.Show("Cantidad debe ser un n�mero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            if (!int.TryParse(txtCantJ.Text, out int cantidad)) { MessageBox.Show("Cantidad debe ser un numero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
-            if (!double.TryParse(txtPrecioU.Text, out double precioU)) { MessageBox.Show("Precio Unitario debe ser un n�mero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            if (!double.TryParse(txtPrecioU.Text, out double precioU)) { MessageBox.Show("Precio Unitario debe ser un numero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
-            if (!int.TryParse(txtNumTelefonico.Text, out int telefono)) { MessageBox.Show("Telefono debe ser un n�mero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            if (!int.TryParse(txtNumTelefonico.Text, out int telefono)) { MessageBox.Show("Telefono debe ser un numero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
-            if (!int.TryParse(txtCodigo.Text, out int codigo)) { MessageBox.Show("C�digo debe ser un n�mero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            if (!int.TryParse(txtCodigo.Text, out int codigo)) { MessageBox.Show("Codigo debe ser un numero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
             if (!txtNombre.Text.All(char.IsLetter) || !txtApellido.Text.All(char.IsLetter)) { MessageBox.Show("Nombre y apellido deben contener solo texto.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
             string nombre = txtNombre.Text;
             string apellido = txtApellido.Text;
             string nombreProducto = txtNomProducto.Text;
+            string cedula = txtCedula.Text;
             // int telefono = Convert.ToInt32(txtNumTelefonico.Text);
             // int codigo = Convert.ToInt32(txtCodigo.Text);
             // double precioU = Convert.ToDouble(txtPrecioU.Text);
@@ -59,7 +62,7 @@ namespace FacturasProjects.Facturas
 
                 if (codigoList[i].Equals(codigo))
                 {
-                    MessageBox.Show("El c�digo ingresado ya se encuentra registrado", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("El codigo ingresado ya se encuentra registrado", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
             }
@@ -79,13 +82,14 @@ namespace FacturasProjects.Facturas
             nombreList.Add(nombre);
             apellidoList.Add(apellido);
             telefonoList.Add(telefono);
+            cedulaList.Add(cedula);
             codigoList.Add(codigo);
             nombreProductoList.Add(nombreProducto);
             precioUList.Add(precioU);
             cantidadList.Add(cantidad);
 
             // Crear una nueva fila en el DataGridView, en orden de agregar los datos ingresados
-            tabla.Rows.Add(nombre, apellido, telefono, codigo, nombreProducto, precioU, cantidad);
+            tabla.Rows.Add(nombre, apellido, telefono,cedula, codigo, nombreProducto, precioU, cantidad);
 
             limpiarTxt(); // funcion para limpiar los txt
             MessageBox.Show("Datos Ingresados Correctamente", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -112,6 +116,7 @@ namespace FacturasProjects.Facturas
             tabla.Columns.Add("Nombre", "Nombre");
             tabla.Columns.Add("Apellido", "Apellido");
             tabla.Columns.Add("Telefono", "Telefono");
+            tabla.Columns.Add("Cedula", "Cedula"); 
             tabla.Columns.Add("Codigo", "Codigo");
             tabla.Columns.Add("Nombre Producto", "Nombre Producto");
             tabla.Columns.Add("Precio Unitario", "Precio Unitario");
@@ -155,39 +160,49 @@ namespace FacturasProjects.Facturas
 
         }
 
-        private int obtenerCodigoValido()
+        private int obtenerCodigoValido(bool buscarExistente = false)
         {
             while (true)
             {
-                string input = Microsoft.VisualBasic.Interaction.InputBox("Ingrese el c�digo del producto:", "Codigo del Producto", "");
+                string input = Microsoft.VisualBasic.Interaction.InputBox("Ingrese el codigo del producto:", "Codigo del Producto", "");
 
                 if (string.IsNullOrWhiteSpace(input))
                 {
                     MessageBox.Show("El codigo no puede estar vacio.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return -1; // Indica que no se ingres� un c�digo v�lido
+                    return -1; // Indica que no se ingreso un codigo valido
                 }
 
-                int codigoBuscar;
-                if(int.TryParse(input, out codigoBuscar))
+                // int codigoBuscar;
+                if(!int.TryParse(input, out int codigoBuscar))
                 {
-                    if (codigoList.Contains(codigoBuscar))
+                    
+                        MessageBox.Show("El codigo debe ser un numero entero. Ingrese un nuevo codigo", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        continue;
+                    
+                }
+
+                if (buscarExistente)
+                {
+                    if (!codigoList.Contains(codigoBuscar))
                     {
-                        MessageBox.Show("El codigo ingresado ya existe. Ingrese un nuevo codigo", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("El codigo ingresado no existe", "ERROR",MessageBoxButtons.OK, MessageBoxIcon.Error);
                         continue;
                     }
-                    else
-                    {
-                        return codigoBuscar; // Retorna el c�digo valido
-                    }
+
+                }
+                else
+                {
+                    if (codigoList.Contains(codigoBuscar)
+                        ) {
+                        MessageBox.Show("El codigo ingresado ya existe. Ingrese un nuevo Codigo", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        continue;
+                            }
                 }
 
-                if(!int.TryParse(input, out codigoBuscar))
-                {
-                    MessageBox.Show("El codigo debe ser un numero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    continue; // Vuelve a solicitar el codigo
-                }
+                return codigoBuscar;
                 
             }
+
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -199,7 +214,7 @@ namespace FacturasProjects.Facturas
                 return;
             }
 
-            int codigoBuscado = obtenerCodigoValido();
+            int codigoBuscado = obtenerCodigoValido(true); // deberia existir un codigo para buscar
             if(codigoBuscado == -1)
             {
                 return;
@@ -257,11 +272,11 @@ namespace FacturasProjects.Facturas
 
             
 
-            if (!int.TryParse(txtCantJ.Text, out int cantidad)) { MessageBox.Show("Cantidad debe ser un n�mero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            if (!int.TryParse(txtCantJ.Text, out int cantidad)) { MessageBox.Show("Cantidad debe ser un numero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
             if (!double.TryParse(txtPrecioU.Text, out double precioU)) { MessageBox.Show("Precio Unitario debe ser un numero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
-            if (!int.TryParse(txtNumTelefonico.Text, out int telefono)) { MessageBox.Show("Tel�fono debe ser un n�mero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            if (!int.TryParse(txtNumTelefonico.Text, out int telefono)) { MessageBox.Show("Tel�fono debe ser un numero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
             if (!txtNombre.Text.All(char.IsLetter) || !txtApellido.Text.All(char.IsLetter)) { MessageBox.Show("Nombre y apellido deben contener solo texto.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
@@ -278,13 +293,14 @@ namespace FacturasProjects.Facturas
 
                 if (codigoList[i].Equals(nuevoCodigo))
                 {
-                    MessageBox.Show("El c�digo ingresado ya se encuentra registrado", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("El codigo ingresado ya se encuentra registrado", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
             }
 
             // Actualizar los datos en las listas
             codigoList[index] = nuevoCodigo;
+            cedulaList[index] = txtCedula.Text;
             nombreList[index] = txtNombre.Text;
             apellidoList[index] = txtApellido.Text;
             telefonoList[index] = telefono;
@@ -299,14 +315,15 @@ namespace FacturasProjects.Facturas
             tabla.Rows[index].Cells["Nombre"].Value = nombreList[index];
             tabla.Rows[index].Cells["Apellido"].Value = apellidoList[index];
             tabla.Rows[index].Cells["Telefono"].Value = telefonoList[index];
+            tabla.Rows[index].Cells["Cedula"].Value = cedulaList[index];
             tabla.Rows[index].Cells["Codigo"].Value = codigoList[index];
             tabla.Rows[index].Cells["Nombre Producto"].Value = nombreProductoList[index];
             tabla.Rows[index].Cells["Precio Unitario"].Value = precioUList[index];
             tabla.Rows[index].Cells["Cantidad"].Value = cantidadList[index];
             tabla.Rows[index].Cells["Total"].Value = total;
-            
 
-            
+            limpiarTxt();
+            MessageBox.Show("Datos Editados Correctamente ", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
     }
