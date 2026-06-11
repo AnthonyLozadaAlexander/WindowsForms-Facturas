@@ -39,6 +39,7 @@
             txtCliente.Clear();
             txtMesa.Clear();
             txtPlato.Clear();
+            txtPrecio.Clear();
             txtTotal.Clear();
         }
 
@@ -74,6 +75,16 @@
             }
         }
 
+        public Boolean verificarSoloLetras(String txt)
+        {
+            if (!txt.All(char.IsLetter)) { MessageBox.Show("Debe contener solo letras.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return true; 
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             if (verificarCamposVacios())
@@ -100,6 +111,13 @@
                 }
             }
 
+            if (verificarSoloLetras(txtCliente.Text))
+            {
+                return;
+            }
+
         }
+
+
     }
 }
