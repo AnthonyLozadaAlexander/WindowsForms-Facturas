@@ -199,6 +199,7 @@
             btnRegistrar.TabIndex = 16;
             btnRegistrar.Text = "Registrar";
             btnRegistrar.UseVisualStyleBackColor = true;
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // btnCalcular
             // 

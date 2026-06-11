@@ -62,5 +62,44 @@
                 return false;
             }
         }
+
+        public Boolean verificarCamposVacios()
+        {
+            if (string.IsNullOrWhiteSpace(txtCantidad.Text) || string.IsNullOrWhiteSpace(txtCliente.Text) || string.IsNullOrWhiteSpace(txtPlato.Text) || string.IsNullOrWhiteSpace(txtMesa.Text) || string.IsNullOrWhiteSpace(txtPrecio.Text)){
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            if (verificarCamposVacios())
+            {
+                MessageBox.Show("Por Favor, Complete todos los campos", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if(!validarMesa(txtMesa.Text, out int mesa))
+            {
+                MessageBox.Show("Numero De Mesa Invalido, Ingrese desde 1 hasta 20", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                if (!mesaList.Contains(mesa))
+                {
+                    mesaList.Add(mesa);
+                }
+                else
+                {
+                    MessageBox.Show("Error: La Mesa Ya Se Encuentra Registrada ", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+        }
     }
 }
