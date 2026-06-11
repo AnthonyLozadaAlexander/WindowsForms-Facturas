@@ -1,6 +1,5 @@
-using System.Data;
+﻿using System.Data;
 using System.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FacturasProjects.Facturas
 {
@@ -41,7 +40,7 @@ namespace FacturasProjects.Facturas
 
             if (!double.TryParse(txtPrecioU.Text, out double precioU)) { MessageBox.Show("Precio Unitario debe ser un n�mero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
-            if (!int.TryParse(txtNumTelefonico.Text, out int telefono)) { MessageBox.Show("Tel�fono debe ser un n�mero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            if (!int.TryParse(txtNumTelefonico.Text, out int telefono)) { MessageBox.Show("Telefono debe ser un n�mero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
             if (!int.TryParse(txtCodigo.Text, out int codigo)) { MessageBox.Show("C�digo debe ser un n�mero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
@@ -160,7 +159,7 @@ namespace FacturasProjects.Facturas
         {
             while (true)
             {
-                string input = Microsoft.VisualBasic.Interaction.InputBox("Ingrese el c�digo del producto:", "C�digo del Producto", "");
+                string input = Microsoft.VisualBasic.Interaction.InputBox("Ingrese el c�digo del producto:", "Codigo del Producto", "");
 
                 if (string.IsNullOrWhiteSpace(input))
                 {
@@ -185,7 +184,7 @@ namespace FacturasProjects.Facturas
                 if(!int.TryParse(input, out codigoBuscar))
                 {
                     MessageBox.Show("El codigo debe ser un numero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    continue; // Vuelve a solicitar el c�digo
+                    continue; // Vuelve a solicitar el codigo
                 }
                 
             }
@@ -260,7 +259,7 @@ namespace FacturasProjects.Facturas
 
             if (!int.TryParse(txtCantJ.Text, out int cantidad)) { MessageBox.Show("Cantidad debe ser un n�mero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
-            if (!double.TryParse(txtPrecioU.Text, out double precioU)) { MessageBox.Show("Precio Unitario debe ser un n�mero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            if (!double.TryParse(txtPrecioU.Text, out double precioU)) { MessageBox.Show("Precio Unitario debe ser un numero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
             if (!int.TryParse(txtNumTelefonico.Text, out int telefono)) { MessageBox.Show("Tel�fono debe ser un n�mero entero.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
@@ -305,6 +304,9 @@ namespace FacturasProjects.Facturas
             tabla.Rows[index].Cells["Precio Unitario"].Value = precioUList[index];
             tabla.Rows[index].Cells["Cantidad"].Value = cantidadList[index];
             tabla.Rows[index].Cells["Total"].Value = total;
+            
+
+            
 
         }
     }
