@@ -276,7 +276,7 @@ namespace FacturasProjects.Facturas
             // 
             label10.AutoSize = true;
             label10.Font = new Font("CaskaydiaMono NF", 22.2545452F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(41, 24);
+            label10.Location = new Point(20, 31);
             label10.Name = "label10";
             label10.Size = new Size(377, 40);
             label10.TabIndex = 0;
