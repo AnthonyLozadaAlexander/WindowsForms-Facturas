@@ -66,7 +66,8 @@
 
         public Boolean verificarCamposVacios()
         {
-            if (string.IsNullOrWhiteSpace(txtCantidad.Text) || string.IsNullOrWhiteSpace(txtCliente.Text) || string.IsNullOrWhiteSpace(txtPlato.Text) || string.IsNullOrWhiteSpace(txtMesa.Text) || string.IsNullOrWhiteSpace(txtPrecio.Text)){
+            if (string.IsNullOrWhiteSpace(txtCantidad.Text) || string.IsNullOrWhiteSpace(txtCliente.Text) || string.IsNullOrWhiteSpace(txtPlato.Text) || string.IsNullOrWhiteSpace(txtMesa.Text) || string.IsNullOrWhiteSpace(txtPrecio.Text))
+            {
                 return true;
             }
             else
@@ -77,7 +78,10 @@
 
         public Boolean verificarSoloLetras(String txt)
         {
-            if (!txt.All(char.IsLetter)) { MessageBox.Show("Debe contener solo letras.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error); return true; 
+            if (!txt.All(char.IsLetter))
+            {
+                MessageBox.Show("Debe contener solo letras.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
             }
             else
             {
@@ -87,13 +91,20 @@
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            if(cboCategoria.SelectedIndex == -1)
+            {
+                MessageBox.Show("Error: Debe seleccionar una categoria", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return; 
+            }
+
             if (verificarCamposVacios())
             {
                 MessageBox.Show("Por Favor, Complete todos los campos", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if(!validarMesa(txtMesa.Text, out int mesa))
+            if (!validarMesa(txtMesa.Text, out int mesa))
             {
                 MessageBox.Show("Numero De Mesa Invalido, Ingrese desde 1 hasta 20", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -105,16 +116,29 @@
                     MessageBox.Show("Error: La Mesa Ya Se Encuentra Registrada ", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                
+
             }
 
             if (verificarSoloLetras(txtCliente.Text))
             {
                 return;
             }
+            else
+            {
+
+            }
 
         }
 
+        private double calcularTotal(int index)
+        {
 
+            return 0.0;
+        }
+
+        private void btnCalcular_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
