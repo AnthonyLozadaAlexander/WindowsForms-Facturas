@@ -4,7 +4,6 @@
     {
         // Crear las listas
         private List<int> mesaList = new List<int>();
-
         private List<string> clienteList = new List<string>();
         private List<string> platoList = new List<string>();
         private List<string> categoriaList = new List<string>();
@@ -16,6 +15,7 @@
             InitializeComponent();
             CenterToScreen();
             MaximizeBox = false;
+            txtTotal.BackColor = Color.White;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -91,11 +91,11 @@
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            if(cboCategoria.SelectedIndex == -1)
+            if (cboCategoria.SelectedIndex == -1)
             {
                 MessageBox.Show("Error: Debe seleccionar una categoria", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                return; 
+                return;
             }
 
             if (verificarCamposVacios())
@@ -123,20 +123,67 @@
             {
                 return;
             }
-            else
-            {
 
-            }
+            int numMesa = Int32.Parse(txtMesa.Text);
+            string cliente = txtCliente.Text;
+            string plato = txtPlato.Text;
+            string categoria = cboCategoria.SelectedItem.ToString();
+            double precio = Double.Parse(txtPrecio.Text);
+            int cantidad = Int32.Parse(txtCantidad.Text);
+
+            mesaList.Add(numMesa);
+            clienteList.Add(cliente);
+            platoList.Add(plato);
+            categoriaList.Add(categoria);
+            precioList.Add(precio);
+            cantidadList.Add(cantidad);
+
+            int index = mesaList.IndexOf(numMesa);
+            tabla.Rows.Add(numMesa, cliente, plato, categoria, precio, cantidad);
+
 
         }
 
         private double calcularTotal(int index)
         {
+            double descuento = 0;
+            double porcentaje = 0;
+            double subtotal = (precioList[index] * cantidadList[index]);
+            double iva = subtotal * 0.13;
+            double total = subtotal + iva;
 
-            return 0.0;
+            if (categoriaList[index] == "Bebidas")
+            {
+                descuento = subtotal * 0.05; // se realiza un descuento del 5% (Porcentaje)
+                total = total - descuento; // se resta el total - el descuento
+            }
+
+            if (total > 50.00)
+            {
+                porcentaje = total * 0.10;
+                MessageBox.Show($"Se sugiera una propina del 10%: {porcentaje}", "Sugerencia de Propina", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            return total;
         }
 
         private void btnCalcular_Click(object sender, EventArgs e)
+        {
+
+            int index = 0;
+            index = tabla.CurrentRow.Index;
+            double total = calcularTotal(index);
+            txtTotal.Text = String.Format($"{total:F2}");
+            tabla.SelectedCells[6].Value = String.Format($"{total:F2}");
+
+        }
+
+        private void cboCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabla_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

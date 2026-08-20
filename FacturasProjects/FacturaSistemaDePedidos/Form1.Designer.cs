@@ -95,7 +95,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Cascadia Code", 13.7454548F, FontStyle.Bold);
-            label5.Location = new Point(346, 45);
+            label5.Location = new Point(59, 498);
             label5.Name = "label5";
             label5.Size = new Size(132, 28);
             label5.TabIndex = 4;
@@ -185,15 +185,16 @@
             cboCategoria.Font = new Font("Cascadia Code", 9.163636F, FontStyle.Bold);
             cboCategoria.FormattingEnabled = true;
             cboCategoria.Items.AddRange(new object[] { "Entrada", "Plato Fuerte", "Postre Bebida" });
-            cboCategoria.Location = new Point(484, 50);
+            cboCategoria.Location = new Point(197, 500);
             cboCategoria.Name = "cboCategoria";
             cboCategoria.Size = new Size(139, 26);
             cboCategoria.TabIndex = 15;
+            cboCategoria.SelectedIndexChanged += cboCategoria_SelectedIndexChanged;
             // 
             // btnRegistrar
             // 
             btnRegistrar.Font = new Font("Cascadia Code", 11.7818184F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRegistrar.Location = new Point(55, 508);
+            btnRegistrar.Location = new Point(59, 615);
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.Size = new Size(132, 46);
             btnRegistrar.TabIndex = 16;
@@ -204,7 +205,7 @@
             // btnCalcular
             // 
             btnCalcular.Font = new Font("Cascadia Code", 11.7818184F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCalcular.Location = new Point(200, 508);
+            btnCalcular.Location = new Point(204, 615);
             btnCalcular.Name = "btnCalcular";
             btnCalcular.Size = new Size(132, 46);
             btnCalcular.TabIndex = 17;
@@ -215,7 +216,7 @@
             // btnBuscar
             // 
             btnBuscar.Font = new Font("Cascadia Code", 11.7818184F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBuscar.Location = new Point(55, 577);
+            btnBuscar.Location = new Point(59, 684);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(132, 46);
             btnBuscar.TabIndex = 18;
@@ -225,7 +226,7 @@
             // btnEliminar
             // 
             btnEliminar.Font = new Font("Cascadia Code", 11.7818184F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEliminar.Location = new Point(200, 577);
+            btnEliminar.Location = new Point(204, 684);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(132, 46);
             btnEliminar.TabIndex = 19;
@@ -237,18 +238,19 @@
             tabla.AllowUserToAddRows = false;
             tabla.AllowUserToDeleteRows = false;
             tabla.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tabla.Location = new Point(473, 121);
+            tabla.Location = new Point(402, 188);
             tabla.Name = "tabla";
             tabla.ReadOnly = true;
             tabla.RowHeadersWidth = 47;
-            tabla.Size = new Size(680, 542);
+            tabla.Size = new Size(819, 542);
             tabla.TabIndex = 20;
+            tabla.CellContentClick += tabla_CellContentClick;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1195, 796);
+            ClientSize = new Size(1250, 796);
             Controls.Add(tabla);
             Controls.Add(btnEliminar);
             Controls.Add(btnBuscar);
