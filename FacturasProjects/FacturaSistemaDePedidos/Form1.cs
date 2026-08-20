@@ -169,12 +169,18 @@
 
         private void btnCalcular_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int index = 0;
+                index = tabla.CurrentRow.Index;
+                double total = calcularTotal(index);
+                txtTotal.Text = String.Format($"{total:F2}");
+                tabla.SelectedCells[6].Value = String.Format($"{total:F2}");
 
-            int index = 0;
-            index = tabla.CurrentRow.Index;
-            double total = calcularTotal(index);
-            txtTotal.Text = String.Format($"{total:F2}");
-            tabla.SelectedCells[6].Value = String.Format($"{total:F2}");
+            }catch(Exception)
+            {
+                MessageBox.Show("Error: Seleccione Toda La Fila Para Calcular El Total", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
